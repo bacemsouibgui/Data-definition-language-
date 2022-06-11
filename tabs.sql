@@ -1,0 +1,35 @@
+--Creating customer Table
+
+CREATE TABLE Customer (
+    Customer_id VARCHAR2(20) CONSTRAINT pk_customer PRIMARY KEY,
+    Customer_Name VARCHAR2(20) CONSTRAINT name_notNull NOT NULL,
+    Customer_Tel NUMBER(8),
+);
+
+--Creating Product Table
+
+CREATE TABLE Product (
+    Product_id VARCHAR2(20) CONSTRAINT pk_product PRIMARY KEY,
+    Product_Name VARCHAR2(20) CONSTRAINT name_notNull NOT NULL,
+    Price NUMBER(8,2)
+
+);
+
+--Creating Orders Table
+
+CREATE TABLE Orders (
+    Customer_id VARCHAR2(20) CONSTRAINT fk_customer FOREIGN KEY REFERENCES Customer(Customer_id),
+    Product_id VARCHAR2(20) CONSTRAINT fk_product FOREIGN KEY REFERENCES Product(Product_id),
+    Quantity NUMBER(10) CONSTRAINT pk_orders PRIMARY KEY,
+    Total_amount NUMBER(10,2) CONSTRAINT pk_orders PRIMARY KEY,
+
+);
+
+-- Add a column Category to Product Table
+
+ALTER TABLE Product ADD CONSTRAINT Category  VARCHAR2(20) ;
+
+---- Add a column OrderDate to ORDERS Table
+
+ALTER TABLE Orders ADD CONSTRAINT OrderDate DEFAULT SYSDATE;
+
